@@ -2,14 +2,14 @@ import React from 'react'
 import { BallContainer } from './BallContainer'
 import { DisplayBall } from './DisplayBall'
 import { TextInput } from './TextInput'
-import styles from "./Display.Module.css";
+import styles from "./DisplayPage.module.css";
 
 export const DisplayPage = () => {
   return (
     <div className={styles.div}>
+         <BallContainer />
+         <DisplayBall />
          <TextInput />
-        <DisplayBall />
-        <BallContainer />
     </div>
   )
 }

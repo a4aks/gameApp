@@ -1,7 +1,7 @@
-import { GET_BALLOON, GET_BALLOONBY_ID,POST_BALLOON_ID } from "./actiontype"
+import { POST_BALLOON, GET_BALLOONBY_ID,POST_BALLOON_ID } from "./actiontype"
 
-export const getBalloon = (payload) =>({
-   type: GET_BALLOON,
+export const postBalloon = (payload) =>({
+   type: POST_BALLOON,
    payload
 })
 
@@ -10,7 +10,7 @@ export const getBalloonByID = (payload) =>({
     payload
 })
 
-export const postBallonByID = (payload) =>({
-    type: POST_BALLOON_ID,
-    payload
-})
+// export const postBallonByID = (payload) =>({
+//     type: POST_BALLOON_ID,
+//     payload
+// })

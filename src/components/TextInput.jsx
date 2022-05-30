@@ -1,25 +1,53 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getBalloonByID } from '../Redux/balloon/action';
-import { BallContainer } from './BallContainer';
+import { postBalloon } from '../Redux/balloon/action';
 
 export const TextInput = () => {
-    const [number, setNumber] = useState("");
-    // const balloon = useSelector((state) => state.balloon.balloon)
- 
-   const dispatch = useDispatch();
+    const [value, setNumber] = useState();
+    const data = useSelector(state => state.balloon.data)
+    const box = useSelector(state => state.balloon.box);
 
-   const getBalloon = () =>{
-    dispatch(getBalloonByID(Number(number)))
-   }
- 
-  return (
-    <div>
-        <input type = "text" value = {number} onChange = {(e) =>setNumber(e.currentTarget.value)} />
-        <button onClick={getBalloon}>ADD</button>
-        {/* {balloon.map((value) =>{
-            return <BallContainer key = {value.id} value = {value} />
-        })} */}
-    </div>
-  )
+    const dispatch = useDispatch();
+
+    
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+
+        (value > data.length) ? alert("Position doesn't exist") : setNumber()
+       let newData = [...box]
+       const sourceData =  data.map((data) =>{
+            if(data.position === Number(value)){
+                console.log(value)
+                data.display = "none";
+                data.position = null
+
+                newData.push(data)
+            }
+            setNumber(0)
+            return data;
+        })
+        dispatch(getBalloonByID(newData))
+        let count = 1
+        // re-ordered  the position of balls after removing a ball;
+        let ordered = sourceData.map((item) => {
+            if (item.display == "block") {
+                item.position = count;
+                count++;
+            }
+            return item;
+        })
+
+        // updating the balls info in data
+        dispatch(postBalloon(ordered))
+    }
+
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                <input type="number" value={value} onChange={(e) => setNumber(e.target.value)} required/>
+                <input type = "submit" value = "HIT THE BALL" />
+            </form>
+        </div>
+    )
 }

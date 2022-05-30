@@ -1,13 +1,14 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { postBallonByID } from '../Redux/balloon/action';
+
 
 export const Ball = ({value}) => {
+    console.log(value)
 
 const dispatch = useDispatch()
     const getId = (id) =>{
      console.log(id)
-      dispatch(postBallonByID(id))
+    //   dispatch(postBallonByID(id))
     }
   return (
     <div>

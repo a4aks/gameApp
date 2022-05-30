@@ -10,7 +10,9 @@ function App() {
   //   grid-gap: 20px;
   // `
   return (
-    <div className='App' >
+    <div className='App'>
+      <h1>SHOOT GAME</h1>
+
        <div>
            <DisplayPage />
         </div>
